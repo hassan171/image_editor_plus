@@ -862,6 +862,9 @@ class _SingleImageEditorState extends State<SingleImageEditor> {
                         rotateValue = 0;
 
                         await currentImage.load(croppedImage);
+
+                        layers.removeWhere((element) => element is! BackgroundLayerData);
+
                         setState(() {});
                       },
                     ),
