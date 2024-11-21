@@ -32,8 +32,6 @@ class Layer {
         return EmojiLayerData.fromJson(json);
       case 'ImageLayer':
         return ImageLayerData.fromJson(json);
-      case 'LinkLayer':
-        return LinkLayerData.fromJson(json);
       case 'TextLayer':
         return TextLayerData.fromJson(json);
       case 'ShapeLayer':
@@ -241,56 +239,6 @@ class ShapeLayerData extends Layer {
       'filled': filled,
       'color': color.value,
       'size': size,
-      ...super.toJson(),
-    };
-  }
-}
-
-/// Attributes used by [TextLayer]
-class LinkLayerData extends Layer {
-  String text;
-  double size;
-  Color color, background;
-  double backgroundOpacity;
-  TextAlign align;
-
-  LinkLayerData({
-    required this.text,
-    this.size = 64,
-    this.color = Colors.white,
-    this.background = Colors.transparent,
-    this.backgroundOpacity = 0,
-    this.align = TextAlign.left,
-    super.offset,
-    super.opacity,
-    super.rotation,
-    super.scale,
-  });
-
-  static LinkLayerData fromJson(Map json) {
-    var layer = LinkLayerData(
-      text: json['text'],
-      size: json['size'],
-      color: Color(json['color']),
-      background: Color(json['background']),
-      backgroundOpacity: json['backgroundOpacity'],
-      align: TextAlign.values.firstWhere((e) => e.name == json['align']),
-    );
-
-    layer.copyFrom(json);
-    return layer;
-  }
-
-  @override
-  Map toJson() {
-    return {
-      'type': 'LinkLayer',
-      'text': text,
-      'size': size,
-      'color': color.value,
-      'background': background.value,
-      'backgroundOpacity': backgroundOpacity,
-      'align': align.name,
       ...super.toJson(),
     };
   }

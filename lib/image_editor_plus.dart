@@ -18,7 +18,6 @@ import 'package:image_editor_plus/layers_viewer.dart';
 import 'package:image_editor_plus/loading_screen.dart';
 import 'package:image_editor_plus/modules/all_emojis.dart';
 import 'package:image_editor_plus/modules/layers_overlay.dart';
-import 'package:image_editor_plus/modules/link.dart';
 import 'package:image_editor_plus/modules/shape.dart';
 import 'package:image_editor_plus/modules/text.dart';
 import 'package:image_editor_plus/options.dart' as o;
@@ -936,28 +935,6 @@ class _SingleImageEditorState extends State<SingleImageEditor> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => const TextEditorImage(),
-                          ),
-                        );
-
-                        if (layer == null) return;
-
-                        undoLayers.clear();
-                        removedLayers.clear();
-
-                        layers.add(layer);
-
-                        setState(() {});
-                      },
-                    ),
-                  if (widget.textOption != null)
-                    BottomButton(
-                      icon: Icons.link,
-                      text: i18n('Link'),
-                      onTap: () async {
-                        LinkLayerData? layer = await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LinkEditorImage(),
                           ),
                         );
 

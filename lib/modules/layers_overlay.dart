@@ -262,11 +262,7 @@ class _ManageLayersOverlayState extends State<ManageLayersOverlay> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (layer is LinkLayerData)
-                          Text(
-                            layer.text,
-                          )
-                        else if (layer is TextLayerData)
+                        if (layer is TextLayerData)
                           Text(
                             layer.text,
                           )

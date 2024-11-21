@@ -4,7 +4,6 @@ import 'package:image_editor_plus/layers/background_blur_layer.dart';
 import 'package:image_editor_plus/layers/background_layer.dart';
 import 'package:image_editor_plus/layers/emoji_layer.dart';
 import 'package:image_editor_plus/layers/image_layer.dart';
-import 'package:image_editor_plus/layers/link_layer.dart';
 import 'package:image_editor_plus/layers/shape_layer.dart';
 import 'package:image_editor_plus/layers/text_layer.dart';
 
@@ -72,15 +71,6 @@ class LayersViewer extends StatelessWidget {
         // Shape layer
         if (layerItem is ShapeLayerData) {
           return ShapeLayer(
-            layerData: layerItem,
-            onUpdate: onUpdate,
-            editable: !layerItem.locked,
-          );
-        }
-
-        // Link layer
-        if (layerItem is LinkLayerData) {
-          return LinkLayer(
             layerData: layerItem,
             onUpdate: onUpdate,
             editable: !layerItem.locked,
