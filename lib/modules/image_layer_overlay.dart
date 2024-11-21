@@ -19,15 +19,6 @@ class ImageLayerOverlay extends StatefulWidget {
 }
 
 class _ImageLayerOverlayState extends State<ImageLayerOverlay> {
-  double slider = 0.0;
-
-  @override
-  void initState() {
-    //  slider = widget.sizevalue;
-
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,8 +50,6 @@ class _ImageLayerOverlayState extends State<ImageLayerOverlay> {
               },
               onChanged: (v) {
                 setState(() {
-                  slider = v;
-                  // print(v.toDouble());
                   widget.layerData.scale = v.toDouble();
                   widget.onUpdate();
                 });

@@ -20,15 +20,6 @@ class LinkLayerOverlay extends StatefulWidget {
 }
 
 class _LinkLayerOverlayState extends State<LinkLayerOverlay> {
-  double slider = 0.0;
-
-  @override
-  void initState() {
-    //  slider = widget.sizevalue;
-
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -70,8 +61,6 @@ class _LinkLayerOverlayState extends State<LinkLayerOverlay> {
                     },
                     onChanged: (v) {
                       setState(() {
-                        slider = v;
-                        // print(v.toDouble());
                         widget.layer.size = v.toDouble();
                         widget.onUpdate();
                       });

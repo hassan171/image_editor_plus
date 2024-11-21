@@ -19,15 +19,6 @@ class EmojiLayerOverlay extends StatefulWidget {
 }
 
 class _EmojiLayerOverlayState extends State<EmojiLayerOverlay> {
-  double slider = 0.0;
-
-  @override
-  void initState() {
-    //  slider = widget.sizevalue;
-
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,8 +47,6 @@ class _EmojiLayerOverlayState extends State<EmojiLayerOverlay> {
               },
               onChanged: (v) {
                 setState(() {
-                  slider = v;
-                  // print(v.toDouble());
                   widget.layer.size = v.toDouble();
                   widget.onUpdate();
                 });

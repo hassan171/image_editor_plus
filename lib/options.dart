@@ -22,7 +22,7 @@ class AspectRatio {
 class CropOption {
   final bool reversible;
 
-  /// List of availble ratios
+  /// List of available ratios
   final List<AspectRatio> ratios;
 
   const CropOption({

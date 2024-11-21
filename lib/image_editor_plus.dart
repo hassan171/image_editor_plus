@@ -144,7 +144,7 @@ class ImageEditor extends StatelessWidget {
   );
 }
 
-/// Show multiple image carousel to edit multple images at one and allow more images to be added
+/// Show multiple image carousel to edit multiple images at one and allow more images to be added
 class MultiImageEditor extends StatefulWidget {
   final List images;
   final String? savePath;
@@ -899,7 +899,7 @@ class _SingleImageEditorState extends State<SingleImageEditor> {
                             setState(() {});
                           }
                         } else {
-                          resetTransformation();
+                          // resetTransformation();
                           var loadingScreen = showLoadingScreen(context);
                           var mergedImage = await getMergedImage();
                           loadingScreen.hide();
@@ -918,6 +918,9 @@ class _SingleImageEditorState extends State<SingleImageEditor> {
 
                           if (drawing != null) {
                             currentImage.load(drawing);
+
+                            //remove all layers except background
+                            layers.removeWhere((element) => element is! BackgroundLayerData);
 
                             setState(() {});
                           }
@@ -1778,7 +1781,7 @@ class ImageEditorDrawing extends StatefulWidget {
 }
 
 class _ImageEditorDrawingState extends State<ImageEditorDrawing> {
-  Color pickerColor = Colors.white, currentColor = Colors.white, currentBackgroundColor = Colors.black;
+  Color pickerColor = Colors.white, currentColor = Colors.white, currentBackgroundColor = Colors.white;
   var screenshotController = ScreenshotController();
 
   final control = HandSignatureControl(
@@ -1834,7 +1837,7 @@ class _ImageEditorDrawingState extends State<ImageEditorDrawing> {
               padding: const EdgeInsets.symmetric(horizontal: 8),
               icon: Icon(
                 Icons.undo,
-                color: control.paths.isNotEmpty ? Colors.white : Colors.white.withAlpha(80),
+                color: control.paths.isNotEmpty ? Colors.black : Colors.black.withAlpha(80),
               ),
               onPressed: () {
                 if (control.paths.isEmpty) return;
@@ -1848,7 +1851,7 @@ class _ImageEditorDrawingState extends State<ImageEditorDrawing> {
               padding: const EdgeInsets.symmetric(horizontal: 8),
               icon: Icon(
                 Icons.redo,
-                color: undoList.isNotEmpty ? Colors.white : Colors.white.withAlpha(80),
+                color: undoList.isNotEmpty ? Colors.black : Colors.black.withAlpha(80),
               ),
               onPressed: () {
                 if (undoList.isEmpty) return;
@@ -1886,28 +1889,41 @@ class _ImageEditorDrawingState extends State<ImageEditorDrawing> {
             ),
           ],
         ),
-        body: Screenshot(
-          controller: screenshotController,
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              color: widget.options.showBackground ? null : currentBackgroundColor,
-              image: widget.options.showBackground
-                  ? DecorationImage(
-                      image: Image.memory(widget.image.bytes).image,
-                      fit: BoxFit.contain,
-                    )
-                  : null,
-            ),
-            child: HandSignature(
-              control: control,
-              color: currentColor,
-              width: 1.0,
-              maxWidth: 7.0,
-              type: SignatureDrawType.shape,
-            ),
-          ),
+        body: FutureBuilder(
+          future: widget.image.loader.future,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState != ConnectionState.done) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            return SizedBox(
+              height: widget.image.height.toDouble(),
+              width: widget.image.width.toDouble(),
+              child: Screenshot(
+                controller: screenshotController,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: currentBackgroundColor,
+                    image: widget.options.showBackground
+                        ? DecorationImage(
+                            image: Image.memory(widget.image.bytes).image,
+                            fit: BoxFit.contain,
+                          )
+                        : null,
+                  ),
+                  child: HandSignature(
+                    control: control,
+                    color: currentColor,
+                    width: 1.0,
+                    maxWidth: 7.0,
+                    type: SignatureDrawType.shape,
+                  ),
+                ),
+              ),
+            );
+          },
         ),
         bottomNavigationBar: SafeArea(
           child: SizedBox(

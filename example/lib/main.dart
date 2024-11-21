@@ -45,7 +45,7 @@ class _ImageEditorExampleState extends State<ImageEditorExample> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(),
+          const Row(),
           if (imageData != null)
             Image.memory(
               imageData!,
