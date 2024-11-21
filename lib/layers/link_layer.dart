@@ -64,8 +64,7 @@ class _TextViewState extends State<LinkLayer> {
                     widget.layerData.offset.dy + detail.focalPointDelta.dy,
                   );
                 } else if (detail.pointerCount == 2) {
-                  widget.layerData.size =
-                      initialSize + detail.scale * (detail.scale > 1 ? 1 : -1);
+                  widget.layerData.size = initialSize + detail.scale * (detail.scale > 1 ? 1 : -1);
 
                   // print('angle');
                   // print(detail.rotation);
@@ -81,8 +80,7 @@ class _TextViewState extends State<LinkLayer> {
             child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: widget.layerData.background
-                      .withOpacity(widget.layerData.backgroundOpacity),
+                  color: widget.layerData.background.withOpacity(widget.layerData.backgroundOpacity),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Row(children: [

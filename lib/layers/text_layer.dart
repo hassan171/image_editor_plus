@@ -64,11 +64,11 @@ class _TextViewState extends State<TextLayer> {
                     widget.layerData.offset.dy + detail.focalPointDelta.dy,
                   );
                 } else if (detail.pointerCount == 2) {
-                  widget.layerData.size =
-                      initialSize + detail.scale * (detail.scale > 1 ? 1 : -1);
-
-                  // print('angle');
-                  // print(detail.rotation);
+                  final scaleFactor = detail.scale - 1;
+                  // widget.layerData.size = initialSize + detail.scale * (detail.scale > 1 ? 1 : -1);
+                  widget.layerData.size = initialSize + scaleFactor * 10;
+                  // clap the size
+                  if (widget.layerData.size < 10) widget.layerData.size = 10;
                   widget.layerData.rotation = detail.rotation;
                 }
                 setState(() {});
@@ -81,8 +81,7 @@ class _TextViewState extends State<TextLayer> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                color: widget.layerData.background
-                    .withOpacity(widget.layerData.backgroundOpacity),
+                color: widget.layerData.background.withOpacity(widget.layerData.backgroundOpacity),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(

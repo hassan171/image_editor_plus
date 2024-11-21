@@ -32,7 +32,6 @@ class _LinkLayerOverlayState extends State<LinkLayerOverlay> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 450,
       decoration: const BoxDecoration(
         color: Colors.black87,
         borderRadius: BorderRadius.only(
@@ -47,8 +46,7 @@ class _LinkLayerOverlayState extends State<LinkLayerOverlay> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
             ),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Container(
                 padding: const EdgeInsets.only(left: 16),
                 child: Text(
@@ -126,8 +124,7 @@ class _LinkLayerOverlayState extends State<LinkLayerOverlay> {
                       widget.onUpdate();
                     });
                   },
-                  child: Text(i18n('Reset'),
-                      style: const TextStyle(color: Colors.white)),
+                  child: Text(i18n('Reset'), style: const TextStyle(color: Colors.white)),
                 ),
                 const SizedBox(width: 16),
               ]),

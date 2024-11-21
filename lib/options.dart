@@ -101,6 +101,10 @@ class TextOption {
   const TextOption();
 }
 
+class ShapesOption {
+  const ShapesOption();
+}
+
 class ImagePickerOption {
   final bool pickFromGallery, captureFromCamera;
   final int maxLength;

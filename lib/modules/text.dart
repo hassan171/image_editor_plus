@@ -12,7 +12,7 @@ class TextEditorImage extends StatefulWidget {
 
 class _TextEditorImageState extends State<TextEditorImage> {
   TextEditingController name = TextEditingController();
-  Color currentColor = Colors.white;
+  Color currentColor = Colors.black;
   double slider = 32.0;
   TextAlign align = TextAlign.left;
 
@@ -21,15 +21,12 @@ class _TextEditorImageState extends State<TextEditorImage> {
     var size = MediaQuery.of(context).size;
 
     return Theme(
-      data: ThemeData.dark(),
+      data: ImageEditor.theme,
       child: Scaffold(
         appBar: AppBar(
           actions: <Widget>[
             IconButton(
-              icon: Icon(FontAwesomeIcons.alignLeft,
-                  color: align == TextAlign.left
-                      ? Colors.white
-                      : Colors.white.withAlpha(80)),
+              icon: Icon(FontAwesomeIcons.alignLeft, color: align == TextAlign.left ? Colors.black : Colors.black.withAlpha(80)),
               onPressed: () {
                 setState(() {
                   align = TextAlign.left;
@@ -37,10 +34,7 @@ class _TextEditorImageState extends State<TextEditorImage> {
               },
             ),
             IconButton(
-              icon: Icon(FontAwesomeIcons.alignCenter,
-                  color: align == TextAlign.center
-                      ? Colors.white
-                      : Colors.white.withAlpha(80)),
+              icon: Icon(FontAwesomeIcons.alignCenter, color: align == TextAlign.center ? Colors.black : Colors.black.withAlpha(80)),
               onPressed: () {
                 setState(() {
                   align = TextAlign.center;
@@ -48,10 +42,7 @@ class _TextEditorImageState extends State<TextEditorImage> {
               },
             ),
             IconButton(
-              icon: Icon(FontAwesomeIcons.alignRight,
-                  color: align == TextAlign.right
-                      ? Colors.white
-                      : Colors.white.withAlpha(80)),
+              icon: Icon(FontAwesomeIcons.alignRight, color: align == TextAlign.right ? Colors.black : Colors.black.withAlpha(80)),
               onPressed: () {
                 setState(() {
                   align = TextAlign.right;
@@ -72,7 +63,7 @@ class _TextEditorImageState extends State<TextEditorImage> {
                   ),
                 );
               },
-              color: Colors.white,
+              color: Colors.black,
               padding: const EdgeInsets.all(15),
             )
           ],
@@ -88,7 +79,7 @@ class _TextEditorImageState extends State<TextEditorImage> {
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.all(10),
                     hintText: i18n('Insert Your Message'),
-                    hintStyle: const TextStyle(color: Colors.white),
+                    hintStyle: const TextStyle(color: Colors.black26),
                     alignLabelWithHint: true,
                   ),
                   scrollPadding: const EdgeInsets.all(20.0),

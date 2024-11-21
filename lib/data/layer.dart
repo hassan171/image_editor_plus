@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:image_editor_plus/data/image_item.dart';
+import 'package:image_editor_plus/data/shape_item.dart';
 
 /// Layer class with some common properties
 class Layer {
   Offset offset;
   double rotation, scale, opacity;
+  bool locked;
 
   Layer({
     this.offset = const Offset(64, 64),
     this.opacity = 1,
     this.rotation = 0,
     this.scale = 1,
+    this.locked = false,
   });
 
   copyFrom(Map json) {
@@ -18,6 +21,7 @@ class Layer {
     opacity = json['opacity'];
     rotation = json['rotation'];
     scale = json['scale'];
+    locked = json['locked'];
   }
 
   static Layer fromJson(Map json) {
@@ -32,6 +36,8 @@ class Layer {
         return LinkLayerData.fromJson(json);
       case 'TextLayer':
         return TextLayerData.fromJson(json);
+      case 'ShapeLayer':
+        return ShapeLayerData.fromJson(json);
       case 'BackgroundBlurLayer':
         return BackgroundBlurLayerData.fromJson(json);
       default:
@@ -45,6 +51,7 @@ class Layer {
       'opacity': opacity,
       'rotation': rotation,
       'scale': scale,
+      'locked': locked,
     };
   }
 }
@@ -187,6 +194,53 @@ class TextLayerData extends Layer {
       'background': background.value,
       'backgroundOpacity': backgroundOpacity,
       'align': align.name,
+      ...super.toJson(),
+    };
+  }
+}
+
+// Attributes used by [ShapeLayer]
+class ShapeLayerData extends Layer {
+  ShapeType shape;
+  Color color;
+  double size;
+  bool filled;
+
+  ShapeLayerData({
+    required this.shape,
+    required this.color,
+    this.size = 64,
+    this.filled = false,
+    super.offset,
+    super.opacity,
+    super.rotation,
+    super.scale,
+  });
+
+  double getSizeForWidget() {
+    if (shape == ShapeType.circle) return size * 2;
+    return size;
+  }
+
+  static ShapeLayerData fromJson(Map json) {
+    var layer = ShapeLayerData(
+      shape: ShapeType.fromName(json['type']),
+      filled: json['filled'],
+      color: Color(json['color']),
+      size: json['size'],
+    );
+
+    layer.copyFrom(json);
+    return layer;
+  }
+
+  @override
+  Map toJson() {
+    return {
+      'type': shape.name,
+      'filled': filled,
+      'color': color.value,
+      'size': size,
       ...super.toJson(),
     };
   }

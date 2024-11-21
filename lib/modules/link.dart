@@ -12,7 +12,7 @@ class LinkEditorImage extends StatefulWidget {
 
 class _LinkEditorImageState extends State<LinkEditorImage> {
   TextEditingController name = TextEditingController();
-  Color currentColor = Colors.white;
+  Color currentColor = Colors.black;
   Color backgroundColor = Colors.transparent;
   double slider = 32.0;
   TextAlign align = TextAlign.left;
@@ -22,15 +22,12 @@ class _LinkEditorImageState extends State<LinkEditorImage> {
     var size = MediaQuery.of(context).size;
 
     return Theme(
-      data: ThemeData.dark(),
+      data: ImageEditor.theme,
       child: Scaffold(
         appBar: AppBar(
           actions: <Widget>[
             IconButton(
-              icon: Icon(FontAwesomeIcons.alignLeft,
-                  color: align == TextAlign.left
-                      ? Colors.white
-                      : Colors.white.withAlpha(80)),
+              icon: Icon(FontAwesomeIcons.alignLeft, color: align == TextAlign.left ? Colors.black : Colors.black.withAlpha(80)),
               onPressed: () {
                 setState(() {
                   align = TextAlign.left;
@@ -38,10 +35,7 @@ class _LinkEditorImageState extends State<LinkEditorImage> {
               },
             ),
             IconButton(
-              icon: Icon(FontAwesomeIcons.alignCenter,
-                  color: align == TextAlign.center
-                      ? Colors.white
-                      : Colors.white.withAlpha(80)),
+              icon: Icon(FontAwesomeIcons.alignCenter, color: align == TextAlign.center ? Colors.black : Colors.black.withAlpha(80)),
               onPressed: () {
                 setState(() {
                   align = TextAlign.center;
@@ -49,10 +43,7 @@ class _LinkEditorImageState extends State<LinkEditorImage> {
               },
             ),
             IconButton(
-              icon: Icon(FontAwesomeIcons.alignRight,
-                  color: align == TextAlign.right
-                      ? Colors.white
-                      : Colors.white.withAlpha(80)),
+              icon: Icon(FontAwesomeIcons.alignRight, color: align == TextAlign.right ? Colors.black : Colors.black.withAlpha(80)),
               onPressed: () {
                 setState(() {
                   align = TextAlign.right;
@@ -73,7 +64,7 @@ class _LinkEditorImageState extends State<LinkEditorImage> {
                   ),
                 );
               },
-              color: Colors.white,
+              color: Colors.black,
               padding: const EdgeInsets.all(15),
             )
           ],
@@ -89,7 +80,7 @@ class _LinkEditorImageState extends State<LinkEditorImage> {
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.all(10),
                     hintText: i18n('https://example.com'),
-                    hintStyle: const TextStyle(color: Colors.white),
+                    hintStyle: const TextStyle(color: Colors.black26),
                     alignLabelWithHint: true,
                   ),
                   scrollPadding: const EdgeInsets.all(20.0),

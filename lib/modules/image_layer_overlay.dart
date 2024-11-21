@@ -31,11 +31,9 @@ class _ImageLayerOverlayState extends State<ImageLayerOverlay> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
       decoration: const BoxDecoration(
         color: Colors.black87,
-        borderRadius: BorderRadius.only(
-            topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+        borderRadius: BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
       ),
       child: Column(
         children: [

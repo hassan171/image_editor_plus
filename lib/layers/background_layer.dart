@@ -26,6 +26,12 @@ class _BackgroundLayerState extends State<BackgroundLayer> {
       height: widget.layerData.image.height.toDouble(),
       // color: black,
       padding: EdgeInsets.zero,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: widget.editable ? Colors.grey : Colors.transparent,
+          width: 0.5,
+        ),
+      ),
       child: Image.memory(widget.layerData.image.bytes),
     );
   }

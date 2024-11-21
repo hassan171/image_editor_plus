@@ -5,18 +5,17 @@ import 'package:image_editor_plus/layers/background_layer.dart';
 import 'package:image_editor_plus/layers/emoji_layer.dart';
 import 'package:image_editor_plus/layers/image_layer.dart';
 import 'package:image_editor_plus/layers/link_layer.dart';
+import 'package:image_editor_plus/layers/shape_layer.dart';
 import 'package:image_editor_plus/layers/text_layer.dart';
 
 /// View stacked layers (unbounded height, width)
 class LayersViewer extends StatelessWidget {
   final List<Layer> layers;
   final Function()? onUpdate;
-  final bool editable;
 
   const LayersViewer({
     super.key,
     required this.layers,
-    required this.editable,
     this.onUpdate,
   });
 
@@ -30,7 +29,7 @@ class LayersViewer extends StatelessWidget {
           return BackgroundLayer(
             layerData: layerItem,
             onUpdate: onUpdate,
-            editable: editable,
+            editable: !layerItem.locked,
           );
         }
 
@@ -39,7 +38,7 @@ class LayersViewer extends StatelessWidget {
           return ImageLayer(
             layerData: layerItem,
             onUpdate: onUpdate,
-            editable: editable,
+            editable: !layerItem.locked,
           );
         }
 
@@ -48,7 +47,7 @@ class LayersViewer extends StatelessWidget {
           return BackgroundBlurLayer(
             layerData: layerItem,
             onUpdate: onUpdate,
-            editable: editable,
+            editable: !layerItem.locked,
           );
         }
 
@@ -57,7 +56,7 @@ class LayersViewer extends StatelessWidget {
           return EmojiLayer(
             layerData: layerItem,
             onUpdate: onUpdate,
-            editable: editable,
+            editable: !layerItem.locked,
           );
         }
 
@@ -66,7 +65,16 @@ class LayersViewer extends StatelessWidget {
           return TextLayer(
             layerData: layerItem,
             onUpdate: onUpdate,
-            editable: editable,
+            editable: !layerItem.locked,
+          );
+        }
+
+        // Shape layer
+        if (layerItem is ShapeLayerData) {
+          return ShapeLayer(
+            layerData: layerItem,
+            onUpdate: onUpdate,
+            editable: !layerItem.locked,
           );
         }
 
@@ -75,7 +83,7 @@ class LayersViewer extends StatelessWidget {
           return LinkLayer(
             layerData: layerItem,
             onUpdate: onUpdate,
-            editable: editable,
+            editable: !layerItem.locked,
           );
         }
 

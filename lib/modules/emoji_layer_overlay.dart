@@ -31,24 +31,20 @@ class _EmojiLayerOverlayState extends State<EmojiLayerOverlay> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
-      decoration: const BoxDecoration(
-        color: Colors.black87,
-        borderRadius: BorderRadius.only(
-            topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.5),
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(10),
+          topLeft: Radius.circular(10),
+        ),
       ),
       child: Column(
         children: [
           const SizedBox(height: 10),
           Center(
-            child: Text(
-              i18n('Size Adjust').toUpperCase(),
-              style: const TextStyle(color: Colors.white),
-            ),
+            child: Text(i18n('Size Adjust').toUpperCase()),
           ),
           Slider(
-              activeColor: Colors.white,
-              inactiveColor: Colors.grey,
               value: widget.layer.size,
               min: 0.0,
               max: 100.0,
@@ -67,23 +63,22 @@ class _EmojiLayerOverlayState extends State<EmojiLayerOverlay> {
                 });
               }),
           const SizedBox(height: 10),
-          Row(children: [
-            Expanded(
-              child: TextButton(
-                onPressed: () {
-                  removedLayers.add(layers.removeAt(widget.index));
-                  Navigator.pop(context);
-                  widget.onUpdate();
-                  // back(context);
-                  // setState(() {});
-                },
-                child: Text(
-                  i18n('Remove'),
-                  style: const TextStyle(color: Colors.white),
+          Row(
+            children: [
+              Expanded(
+                child: TextButton(
+                  onPressed: () {
+                    removedLayers.add(layers.removeAt(widget.index));
+                    Navigator.pop(context);
+                    widget.onUpdate();
+                  },
+                  child: Text(
+                    i18n('Remove'),
+                  ),
                 ),
               ),
-            ),
-          ]),
+            ],
+          ),
         ],
       ),
     );

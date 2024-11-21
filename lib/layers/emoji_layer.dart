@@ -43,7 +43,6 @@ class _EmojiLayerState extends State<EmojiLayer> {
                     ),
                   ),
                   context: context,
-                  backgroundColor: Colors.transparent,
                   builder: (context) {
                     return EmojiLayerOverlay(
                       index: layers.indexOf(widget.layerData),
@@ -65,10 +64,11 @@ class _EmojiLayerState extends State<EmojiLayer> {
                     widget.layerData.offset.dy + detail.focalPointDelta.dy,
                   );
                 } else if (detail.pointerCount == 2) {
-                  widget.layerData.size = initialSize +
-                      detail.scale * 5 * (detail.scale > 1 ? 1 : -1);
+                  final scaleFactor = detail.scale - 1;
+                  // widget.layerData.size = initialSize + detail.scale * (detail.scale > 1 ? 1 : -1);
+                  widget.layerData.size = initialSize + scaleFactor * 10;
+                  widget.layerData.rotation = detail.rotation;
                 }
-
                 setState(() {});
               }
             : null,
