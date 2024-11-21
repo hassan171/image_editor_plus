@@ -41,6 +41,7 @@ class _ShapeLayerState extends State<ShapeLayer> {
                       topLeft: Radius.circular(10),
                     ),
                   ),
+                  isScrollControlled: true,
                   context: context,
                   backgroundColor: Colors.transparent,
                   builder: (context) {

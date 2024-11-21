@@ -41,6 +41,7 @@ class _TextViewState extends State<TextLayer> {
                       topLeft: Radius.circular(10),
                     ),
                   ),
+                  isScrollControlled: true,
                   context: context,
                   backgroundColor: Colors.transparent,
                   builder: (context) {

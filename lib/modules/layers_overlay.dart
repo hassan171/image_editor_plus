@@ -148,6 +148,7 @@ class _ManageLayersOverlayState extends State<ManageLayersOverlay> {
                       topLeft: Radius.circular(10),
                     ),
                   ),
+                  isScrollControlled: true,
                   context: context,
                   builder: (context) {
                     if (layer is EmojiLayerData) {
